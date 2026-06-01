@@ -1,11 +1,14 @@
 'use client'
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 export default function Login()
 {
+    const params = useSearchParams();
+    const isRegistrationParam = params.get("register");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isRegistration, setIsRegistration] = useState("");
+    const [isRegistration, setIsRegistration] = useState(isRegistrationParam);
     const [error, setError] = useState(null);
     const [authenticating, setAuthenticating] = useState(false);
     const { signup, login } = useAuth();
